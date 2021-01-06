@@ -7,8 +7,8 @@ export default () => {
       <Link to="/">
         <Menu.Item name="Home">Home</Menu.Item>
       </Link>
-      <Link to="/things">
-        <Menu.Item name="Things">Things</Menu.Item>
+      <Link to="/jeopardy">
+        <Menu.Item name="Jeopardy">Jeopardy</Menu.Item>
       </Link>
     </Menu>
   );
