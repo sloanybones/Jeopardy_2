@@ -42,6 +42,7 @@ export default () => {
           </p>
         </div>
      )})};
+     if (!board) return <div>Loading Jeopardy</div>;
      return (
       renderBoard()
      )
