@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Card } from 'semantic-ui-react'
 
 
 
@@ -38,7 +39,10 @@ export default () => {
         <div>
           <div>{card.question}</div>
           <p>
-            {card.aanswer1} {card.answer2}{" "}
+            A) {card.answer1}; 
+            B) {card.answer2};
+            C) {card.answer3};
+            D) {card.correct_answer}{" "};
           </p>
         </div>
      )})};
