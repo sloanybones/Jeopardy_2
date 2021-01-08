@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Card, Reveal, Grid } from 'semantic-ui-react'
+import { Card, Reveal, Modal, Button } from 'semantic-ui-react'
 
 
 
@@ -29,7 +29,7 @@ export default () => {
     textAlign: "center",
     width: 230,
     height: 200,
-    whiteSpace: "pre-line",
+    justifyContent: "center", 
    }
 
 const styleCardFront = {
@@ -52,7 +52,7 @@ const flex = {
       return (
         <div>
        
-          <h1>{category.category}</h1>
+          <h1 style= {flex}>{category.category}</h1>
           {renderCards(category.cards)}
           
         </div>
@@ -63,39 +63,67 @@ const flex = {
     return cards.map((card) => {
       return (
         <div>
-        
-      <Reveal animated='move up'>
+          <Modal
+         
+      onClose={() => setOpen(false)}
+      onOpen={() => setOpen(true)}
+      open={open}
+      size='small'
+      trigger={<Button>
+       <Reveal animated='move up'>
       <Reveal.Content visible>
       <Card style= {styleCardFront}>{card.points} </Card>
       </Reveal.Content>
       <Reveal.Content hidden>
       <Card style= {styleCard}>
-      <br/>
+      
         {card.question}
-        <br/>
-        <br/>
-      A) {card.answer1}
-      <br/> 
-      B) {card.answer2}
-      <br/>
-      C) {card.answer3}
-      <br/>
-      D) {card.correct_answer}{" "}
-      <br/>
+        
+        
       </Card>
       </Reveal.Content>
     </Reveal>
-    
+    </Button>}
+    >
+      <Modal.Header>{card.question}</Modal.Header>
+      <Modal.Content>
+      A {card.answer1}
+      <br/> 
+      B {card.answer2}
+      <br/>
+      C {card.answer3}
+      <br/>
+      D {card.correct_answer}{" "}
+      <br/>
+      </Modal.Content>
+      <Modal.Actions>
+        <Button color='black' onClick={() => setOpen(false)}>
+        {card.answer1}
+        </Button>
+        <Button color='black' onClick={() => setOpen(false)}>
+        {card.answer2}
+        </Button>
+        <Button color='black' onClick={() => setOpen(false)}>
+        {card.answer3}
+        </Button>
+        <Button color='black' onClick={() => setOpen(false)}>
+        {card.correct_answer}
+        </Button>
+      
+      </Modal.Actions>
+        
+      
+    </Modal>
   
         </div>
      )})};
      if (!board) return <div>Loading Jeopardy</div>;
-     return (
+     else return (
        <div style= {flex}>
       {renderBoard()}
       </div>
      )
-      }
+     }
  
   
      
